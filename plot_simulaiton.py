@@ -36,7 +36,7 @@ for k in range(3):
         ax.axhline(y=avgPerN[j], color='r', linestyle='--', linewidth=1)
         ax.set_ylim((min(yRange[0],avg.min()),max(yRange[1],avg.max())))
     ax.axhline(y=avgPerN[-1], color='m', linestyle='--', linewidth=1)
-    ax.tick_params(axis='both', labelsize=10)
+    ax.tick_params(axis='both', labelsize=8)
     ax.set_title(title)
     ax.legend()
     ds.close()
