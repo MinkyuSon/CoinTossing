@@ -31,7 +31,8 @@ for k in range(3):
         n = ns[j]
         d = ds[str(n)]
         avg = d/np.arange(1,d.shape[0]+1)/n
-        ax.plot(np.log10(np.arange(10001,d.shape[0]+1))[::10], avg[10000::10], linewidth=0.5, label='n={n}'.format(n=n))
+        avg = avg[10000:]
+        ax.plot(np.log10(np.arange(10001,d.shape[0]+1))[::10], avg[::10], linewidth=0.5, label='n={n}'.format(n=n))
         ax.axhline(y=avgPerN[j], color='r', linestyle='--', linewidth=1)
         ax.set_ylim((min(yRange[0],avg.min()),max(yRange[1],avg.max())))
     ax.axhline(y=avgPerN[-1], color='m', linestyle='--', linewidth=1)
