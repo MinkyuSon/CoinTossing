@@ -35,7 +35,7 @@ for k in range(3):
         ax.plot(np.log10(np.arange(10001,d.shape[0]+1))[::10], avg[::10], linewidth=0.5, label='n={n}'.format(n=n))
         ax.axhline(y=avgPerN[j], color='r', linestyle='--', linewidth=1)
         yRange[0] = min(yRange[0],avg.min())
-        yRange[1] = max(yRange[0],avg.max())
+        yRange[1] = max(yRange[1],avg.max())
     ax.set_ylim(yRange)
     ax.axhline(y=avgPerN[-1], color='m', linestyle='--', linewidth=1)
     ax.tick_params(axis='both', labelsize=8)
