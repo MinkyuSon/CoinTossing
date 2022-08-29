@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import h5py
 
-f = h5py.File("simulation_data.hdf5", "r")
 titles = ['0H0T', '1H0T', '0H1T']
 ns = [100,1000,10000]
 avgPerNs = [
@@ -22,12 +21,14 @@ for k in range(3):
     ax = axes[k]
     title = titles[k]
     avgPerN = avgPerNs[k]
-    ds = f[title]
+    ds = h5py.File(title+'_simulation_data.hdf5','r')
     for j in range(3):
         n = ns[j]
         d = ds[str(n)]
-        ax.plot(np.log10(np.arange(10001,d.shape[1]+1)), d[j,10000:]/n, linewidth=0.5, label='n={n}'.format(n=n))
+        ax.plot(np.log10(np.arange(10001,d.shape[0]+1)), d[10000:]/np.arange(10001,d.shape[0]+1)/n, linewidth=0.5, label='n={n}'.format(n=n))
         ax.axhline(y=avgPerN[j], color='r', linestyle='--', linewidth=1)
     ax.axhline(y=avgPerN[-1], color='m', linestyle='--', linewidth=1)
     ax.set_title(title)
+    ax.legend()
+    ds.close()
 plt.savefig('Average Return on n Tosses.png', bbox_inches='tight')
