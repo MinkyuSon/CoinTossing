@@ -24,10 +24,10 @@ fig.supylabel('Average Return per n')
 for k in range(3):
     d = data[k]
     ax = axes[k]
-    n = ns[k]
     title = titles[k]
     avgPerN = avgPerNs[k]
     for j in range(3):
+        n = ns[j]
         ax.plot(np.log10(np.arange(10001,d.shape[1]+1)), d[j,10000:]/n, linewidth=0.5, label='n={n}'.format(n=n))
         ax.axhline(y=avgPerN[j], color='r', linestyle='--', linewidth=1)
     ax.axhline(y=avgPerN[-1], color='m', linestyle='--', linewidth=1)
