@@ -12,7 +12,7 @@ avgPerNs = [
 yRanges = [
         [0.22,0.255],
         [0.4, 0.42],
-        [0.05,0.087]
+        [0.05,0.09]
         ]
 plt.rcParams["figure.figsize"] = (12,4)
 fig, axes = plt.subplots(1,3)
@@ -34,7 +34,9 @@ for k in range(3):
         avg = avg[10000:]
         ax.plot(np.log10(np.arange(10001,d.shape[0]+1))[::10], avg[::10], linewidth=0.5, label='n={n}'.format(n=n))
         ax.axhline(y=avgPerN[j], color='r', linestyle='--', linewidth=1)
-        ax.set_ylim((min(yRange[0],avg.min()),max(yRange[1],avg.max())))
+        yRange[0] = min(yRange[0],avg.min())
+        yRange[1] = max(yRange[0],avg.max())
+    ax.set_ylim(yRange)
     ax.axhline(y=avgPerN[-1], color='m', linestyle='--', linewidth=1)
     ax.tick_params(axis='both', labelsize=8)
     ax.set_title(title)
