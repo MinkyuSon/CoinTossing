@@ -9,7 +9,7 @@ P_1000 = np.load('P_1000.npy')
 P_10000 = np.load('P_10000.npy')
 Ps = [P_100, P_1000, P_10000]
 ns = [100,1000,10000]
-epoch_count=10**7
+epoch_count=10**8
 sum_scores_ns = h5py.File('0H1T_simulation_data.hdf5','a')
 
 for k in range(3):
