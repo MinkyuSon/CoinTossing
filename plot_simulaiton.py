@@ -25,14 +25,14 @@ for k in range(3):
     ax = axes[k]
     title = titles[k]
     avgPerN = avgPerNs[k]
-    ds = h5py.File(title+'_simulation_data.hdf5','r')
+    ds = h5py.File('./simulationData/e8 trials/'+title+'_simulation_data.hdf5','r')
     yRange = yRanges[k]
     for j in range(3):
         n = ns[j]
         d = ds[str(n)]
         avg = d/np.arange(1,d.shape[0]+1)/n
-        avg = avg[10000:]
-        ax.plot(np.log10(np.arange(10001,d.shape[0]+1))[::10], avg[::10], linewidth=0.5, label='n={n}'.format(n=n))
+        avg = avg[1000:]
+        ax.plot(np.log10(np.arange(1001,d.shape[0]+1))[::10], avg[::10], linewidth=0.5, label='n={n}'.format(n=n))
         ax.axhline(y=avgPerN[j], color='r', linestyle='--', linewidth=1)
         yRange[0] = min(yRange[0],avg.min())
         yRange[1] = max(yRange[1],avg.max())
